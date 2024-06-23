@@ -1,0 +1,35 @@
+{
+  "extends": ["airbnb-base", "prettier"],
+  "plugins": ["prettier"],
+  "env": {
+    "node": true,
+    "es2021": true
+  },
+  "parserOptions": {
+    "requireConfigFile": true,
+    "babelOptions": {
+      "presets": ["@babel/preset-env"]
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    "prettier/prettier": ["error"],
+    "import/extensions": [
+      "error",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never",
+        "css": "always",
+        "jpg": "always",
+        "svg": "always",
+        "png": "always",
+        "slice": "always",
+        "actions": "always",
+        "selector": "always"
+      }
+    ]
+  }
+}
