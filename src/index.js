@@ -8,14 +8,14 @@ import { validateTransactions } from '@/helpers/validation';
 const fs = require('fs');
 const path = require('path');
 
-const filePath = process.argv[2];
+const generalFilePath = process.argv[2];
 
-if (!filePath) {
+if (!generalFilePath) {
   console.error('Please provide the path to a JSON file as an argument.');
   process.exit(1);
 }
 
-const processTransactions = (filePath) => {
+export const processTransactions = (filePath) => {
   const resolvedPath = path.resolve(filePath);
 
   fs.readFile(resolvedPath, 'utf8', (err, data) => {
@@ -36,11 +36,10 @@ const processTransactions = (filePath) => {
       }
 
       const updatedTransactions = convertTransactionsToCamelCase(transactions);
-      console.log(updatedTransactions);
       const commissions = getCommissions(updatedTransactions);
       commissions.forEach((commission) => {
         console.log(commission);
-      })
+      });
     } catch (parseError) {
       console.error('Error parsing JSON:', parseError);
       process.exit(1);
@@ -48,4 +47,4 @@ const processTransactions = (filePath) => {
   });
 };
 
-processTransactions(filePath);
+processTransactions(generalFilePath);

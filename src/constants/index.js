@@ -6,7 +6,7 @@ export const INDIVIDUALS_FREE_PER_WEEK_CAP = 1000;
 export const CASH_OUT_COMMISSION_RATE = 0.003;
 export const CASH_OUT_LEGAL_ENTITIES_MIN_CAP = 0.5;
 
-export const OPERATIONS_TYPES = {
+export const OPERATION_TYPES = {
   CASH_IN: 'cash_in',
   CASH_OUT: 'cash_out',
 };
