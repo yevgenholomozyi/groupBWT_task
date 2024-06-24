@@ -1,5 +1,5 @@
 // Services
-import { getCommissionFees } from './services/getCommissionFees';
+import { getCommissionFees } from '@/services/getCommissionFees';
 
 // Helpers
 import { convertTransactionsToCamelCase } from '@/helpers';
