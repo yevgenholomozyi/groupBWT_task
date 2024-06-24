@@ -1,4 +1,4 @@
-import { getCommissions } from '@/services/getCommissions';
+import { getCommissionFees } from '@/services/getCommissionFees';
 
 import {
   getUserTotalsByWeek,
@@ -27,7 +27,7 @@ jest.mock('@/calculation', () => ({
   },
 }));
 
-describe('getCommissions', () => {
+describe('getCommissionFees', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -57,7 +57,7 @@ describe('getCommissions', () => {
     handleNaturalCheckout.mockReturnValue(50.0);
     CALCULATION_HANDLERS.natural.cash_out.mockReturnValue(0.15);
 
-    const commissions = getCommissions(transactions);
+    const commissionFees = getCommissionFees(transactions);
 
     expect(getUserTotalsByWeek).toHaveBeenCalledWith(transactions);
     expect(isNaturalCheckout).toHaveBeenCalledWith({
@@ -73,7 +73,7 @@ describe('getCommissions', () => {
       userTotalsByWeek
     );
     expect(CALCULATION_HANDLERS.natural.cash_out).toHaveBeenCalledWith(50.0);
-    expect(commissions).toEqual([0.15]);
+    expect(commissionFees).toEqual([0.15]);
   });
 
   it('should calculate commissions for juridical cash in transactions', () => {
@@ -91,7 +91,7 @@ describe('getCommissions', () => {
     isNaturalCheckout.mockReturnValue(false);
     CALCULATION_HANDLERS.juridical.cash_in.mockReturnValue(3.0);
 
-    const commissions = getCommissions(transactions);
+    const commissionFees = getCommissionFees(transactions);
 
     expect(getUserTotalsByWeek).toHaveBeenCalledWith(transactions);
     expect(isNaturalCheckout).toHaveBeenCalledWith({
@@ -99,6 +99,6 @@ describe('getCommissions', () => {
       userType: 'juridical',
     });
     expect(CALCULATION_HANDLERS.juridical.cash_in).toHaveBeenCalledWith(1000.0);
-    expect(commissions).toEqual([3.0]);
+    expect(commissionFees).toEqual([3.0]);
   });
 });
