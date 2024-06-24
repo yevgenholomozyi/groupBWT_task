@@ -1,5 +1,5 @@
 // Services
-import { getCommissions } from './services/getCommissions';
+import { getCommissionFees } from './services/getCommissionFees';
 
 // Helpers
 import { convertTransactionsToCamelCase } from '@/helpers';
@@ -15,7 +15,7 @@ if (!generalFilePath) {
   process.exit(1);
 }
 
-export const processTransactions = (filePath) => {
+export const processTransactions = async (filePath) => {
   const resolvedPath = path.resolve(filePath);
 
   fs.readFile(resolvedPath, 'utf8', (err, data) => {
@@ -36,7 +36,7 @@ export const processTransactions = (filePath) => {
       }
 
       const updatedTransactions = convertTransactionsToCamelCase(transactions);
-      const commissions = getCommissions(updatedTransactions);
+      const commissions = getCommissionFees(updatedTransactions);
       commissions.forEach((commission) => {
         console.log(commission);
       });
@@ -48,3 +48,5 @@ export const processTransactions = (filePath) => {
 };
 
 processTransactions(generalFilePath);
+
+export default {};

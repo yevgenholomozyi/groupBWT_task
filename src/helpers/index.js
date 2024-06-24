@@ -70,6 +70,8 @@ export const handleNaturalCheckout = (
     amount - userTotalsByWeek[userId][weekStart].limit,
     0
   );
+
+  /* eslint-disable no-param-reassign */
   userTotalsByWeek[userId][weekStart].limit = Math.max(newWeekLimit, 0);
 
   return amountToCalculate;

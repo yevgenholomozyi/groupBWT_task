@@ -8,7 +8,7 @@ import {
   handleNaturalCheckout,
 } from '@/helpers';
 
-export const getCommissions = (transactions) => {
+export const getCommissionFees = (transactions) => {
   const userTotalsByWeek = getUserTotalsByWeek(transactions);
 
   return transactions.map(
