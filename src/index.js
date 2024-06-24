@@ -36,9 +36,9 @@ export const processTransactions = async (filePath) => {
       }
 
       const updatedTransactions = convertTransactionsToCamelCase(transactions);
-      const commissions = getCommissionFees(updatedTransactions);
-      commissions.forEach((commission) => {
-        console.log(commission);
+      const commissionFees = getCommissionFees(updatedTransactions);
+      commissionFees.forEach((commissionFee) => {
+        console.log(commissionFee);
       });
     } catch (parseError) {
       console.error('Error parsing JSON:', parseError);
