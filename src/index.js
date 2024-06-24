@@ -15,7 +15,7 @@ if (!generalFilePath) {
   process.exit(1);
 }
 
-export const processTransactions = async (filePath) => {
+export const processTransactions = (filePath) => {
   const resolvedPath = path.resolve(filePath);
 
   fs.readFile(resolvedPath, 'utf8', (err, data) => {
