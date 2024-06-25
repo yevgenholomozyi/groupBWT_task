@@ -1,7 +1,7 @@
 {
   "name": "task_for_group_bwt",
   "version": "1.0.0",
-  "description": "",
+  "description": "test assignment for BWT group",
   "main": "src/index.js",
   "scripts": {
     "start": "webpack && node dist/bundle.js",

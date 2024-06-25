@@ -3,9 +3,8 @@ import { getCommissionFees } from '@/services/getCommissionFees';
 
 // Helpers
 import { readFile } from '@/helpers/readFile';
-import { getGeneralFilePath, convertTransactionsToCamelCase } from '@/helpers';
-
 import { validateTransactions } from '@/helpers/validation';
+import { getGeneralFilePath, convertTransactionsToCamelCase } from '@/helpers';
 
 export async function getFees() {
   const generalFilePath = getGeneralFilePath();
