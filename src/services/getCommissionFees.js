@@ -1,20 +1,29 @@
 // Calculation
 import { CALCULATION_HANDLERS } from '@/calculation';
 
+// API
+import { getCalculationData } from '@/api';
+
 // Helpers
 import {
-  getUserTotalsByWeek,
   isNaturalCheckout,
+  getUserTotalsByWeek,
   handleNaturalCheckout,
 } from '@/helpers';
 
-export const getCommissionFees = (transactions) => {
-  const userTotalsByWeek = getUserTotalsByWeek(transactions);
+export const getCommissionFees = async (transactions) => {
+  const calculationData = await getCalculationData();
+
+  const userTotalsByWeek = getUserTotalsByWeek(
+    transactions,
+    calculationData.naturalCashOutLimit
+  );
 
   return transactions.map(
     ({ type, userType, userId, date, operation: { amount } }) => {
       const naturalCheckout = isNaturalCheckout({ type, userType });
       const handler = CALCULATION_HANDLERS[userType][type];
+      const operationData = calculationData[userType][type];
 
       if (naturalCheckout) {
         const amountToCalculate = handleNaturalCheckout(
@@ -22,9 +31,9 @@ export const getCommissionFees = (transactions) => {
           userTotalsByWeek
         );
 
-        return handler(amountToCalculate);
+        return handler(amountToCalculate, operationData);
       }
-      return handler(amount);
+      return handler(amount, operationData);
     }
   );
 };

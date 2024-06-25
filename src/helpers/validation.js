@@ -1,3 +1,4 @@
+// Constants
 import { USER_TYPES, OPERATION_TYPES } from '@/constants';
 
 export const validateTransactions = (transactions) =>

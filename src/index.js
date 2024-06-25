@@ -2,51 +2,36 @@
 import { getCommissionFees } from '@/services/getCommissionFees';
 
 // Helpers
-import { convertTransactionsToCamelCase } from '@/helpers';
+import { readFile } from '@/helpers/readFile';
+import { getGeneralFilePath, convertTransactionsToCamelCase } from '@/helpers';
+
 import { validateTransactions } from '@/helpers/validation';
 
-const fs = require('fs');
-const path = require('path');
+export async function getFees() {
+  const generalFilePath = getGeneralFilePath();
 
-const generalFilePath = process.argv[2];
+  try {
+    const transaction = await readFile(generalFilePath);
+    const isValidated = validateTransactions(transaction);
 
-if (!generalFilePath) {
-  console.error('Please provide the path to a JSON file as an argument.');
-  process.exit(1);
-}
-
-export const processTransactions = (filePath) => {
-  const resolvedPath = path.resolve(filePath);
-
-  fs.readFile(resolvedPath, 'utf8', (err, data) => {
-    if (err) {
-      console.error('Error reading file:', err);
+    if (!isValidated) {
+      console.error(
+        'An error occurred while validating transactions. The incoming data can not be processed.'
+      );
       return;
     }
 
-    try {
-      const transactions = JSON.parse(data);
-      const isValidated = validateTransactions(transactions);
+    const convertedTransactions = convertTransactionsToCamelCase(transaction);
+    const commissionFees = await getCommissionFees(convertedTransactions);
 
-      if (!isValidated) {
-        console.error(
-          'An error occurred while validating transactions. The incoming data can not be processed.'
-        );
-        process.exit(1);
-      }
+    commissionFees.forEach((commissionFee) => {
+      console.log(commissionFee);
+    });
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
 
-      const updatedTransactions = convertTransactionsToCamelCase(transactions);
-      const commissionFees = getCommissionFees(updatedTransactions);
-      commissionFees.forEach((commissionFee) => {
-        console.log(commissionFee);
-      });
-    } catch (parseError) {
-      console.error('Error parsing JSON:', parseError);
-      process.exit(1);
-    }
-  });
-};
-
-processTransactions(generalFilePath);
+getFees();
 
 export default {};

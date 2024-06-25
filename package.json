@@ -5,8 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "webpack && node dist/bundle.js",
-    "dev": "webpack --watch & nodemon dist/bundle.js",
-    "test": "jest",
+    "test": "jest --silent",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write ."

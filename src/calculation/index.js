@@ -1,11 +1,5 @@
-import {
-  CASH_IN_COMMISSION_RATE,
-  CASH_IN_MAX_CAP,
-  CASH_OUT_COMMISSION_RATE,
-  CASH_OUT_LEGAL_ENTITIES_MIN_CAP,
-  USER_TYPES,
-  OPERATION_TYPES,
-} from '@/constants';
+// Constants
+import { USER_TYPES, OPERATION_TYPES } from '@/constants';
 
 export const toTwoDecimalCeil = (num) => {
   if (Number.isInteger(num)) {
@@ -16,18 +10,26 @@ export const toTwoDecimalCeil = (num) => {
   return rounded.toFixed(2);
 };
 
-const calculateCashInCommission = (amount) => {
-  const result = Math.min(amount * CASH_IN_COMMISSION_RATE, CASH_IN_MAX_CAP);
+const calculateCashInCommission = (
+  amount,
+  { cashInPercents, cashInMaxAmount }
+) => {
+  const result = Math.min((cashInPercents / 100) * amount, cashInMaxAmount);
   return toTwoDecimalCeil(result);
 };
 
-const calculateCashOutNaturalCommission = (amount) =>
-  toTwoDecimalCeil(amount * CASH_OUT_COMMISSION_RATE);
+const calculateCashOutNaturalCommission = (
+  amount,
+  { cashOutNaturalPercents }
+) => toTwoDecimalCeil(amount * (cashOutNaturalPercents / 100));
 
-const calculateCashOutJuridicalCommission = (amount) => {
+const calculateCashOutJuridicalCommission = (
+  amount,
+  { cashOutJuridicalPercents, cashOutJuridicalMinAmount }
+) => {
   const result = Math.max(
-    amount * CASH_OUT_COMMISSION_RATE,
-    CASH_OUT_LEGAL_ENTITIES_MIN_CAP
+    amount * (cashOutJuridicalPercents / 100),
+    cashOutJuridicalMinAmount
   );
   return toTwoDecimalCeil(result);
 };

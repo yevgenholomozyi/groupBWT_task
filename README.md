@@ -21,20 +21,6 @@ This Node.js script reads an array of objects from a JSON file and prints each e
     npm install
   ```
 
-## Running Test
-
-This project uses Jest for unit testing. To run the tests, follow these steps:
-
-1. Ensure you have installed the necessary dependencies (including Jest) by running:
-  ```sh
-    npm install
-  ```
-2. To execute the tests, use the following command:
-
-  ```sh
-    npm test
-    ```
-
 ## Usage
 
 1. Prepare a JSON file that contains an array of objects. Example `data.json`:
@@ -75,5 +61,18 @@ If your `data.json` file is in the same directory as the script, you can run the
   ```
     npm start data.json
 
+  ```
+## Running Test
+
+This project uses Jest for unit testing. To run the tests, follow these steps:
+
+1. Ensure you have installed the necessary dependencies (including Jest) by running:
+  ```sh
+    npm install
+  ```
+2. To run unit tests use the following command:
+
+  ```sh
+    npm test
   ```
 
