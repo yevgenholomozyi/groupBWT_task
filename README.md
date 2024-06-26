@@ -39,7 +39,7 @@ This Node.js script reads an array of objects from a JSON file and prints each e
         "user_id": 3,
         "user_type": "juridical",
         "type": "cash_in",
-        "operation": { "amount": 200.0, "currency": "USD" }
+        "operation": { "amount": 200.0, "currency": "EUR" }
       }
     ]
     ```
