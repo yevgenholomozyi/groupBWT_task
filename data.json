@@ -61,47 +61,5 @@
     "user_type": "natural",
     "type": "cash_out",
     "operation": { "amount": 300.0, "currency": "EUR" }
-  },
-  {
-    "date": "2024-06-17",
-    "user_id": 4,
-    "user_type": "natural",
-    "type": "cash_out",
-    "operation": { "amount": 300.0, "currency": "EUR" }
-  },
-  {
-    "date": "2024-06-18",
-    "user_id": 4,
-    "user_type": "natural",
-    "type": "cash_out",
-    "operation": { "amount": 300.0, "currency": "EUR" }
-  },
-  {
-    "date": "2024-06-18",
-    "user_id": 4,
-    "user_type": "natural",
-    "type": "cash_out",
-    "operation": { "amount": 150.0, "currency": "EUR" }
-  },
-  {
-    "date": "2024-06-19",
-    "user_id": 4,
-    "user_type": "natural",
-    "type": "cash_out",
-    "operation": { "amount": 150.0, "currency": "EUR" }
-  },
-  {
-    "date": "2024-06-20",
-    "user_id": 4,
-    "user_type": "natural",
-    "type": "cash_out",
-    "operation": { "amount": 200.0, "currency": "EUR" }
-  },
-  {
-    "date": "2024-06-20",
-    "user_id": 4,
-    "user_type": "natural",
-    "type": "cash_out",
-    "operation": { "amount": 250.0, "currency": "EUR" }
   }
 ]
